@@ -1,0 +1,54 @@
+/* MIXINS ADAPTIVE FONT SIZE */
+
+// ширина макета:
+$maxWidth: 1024;
+// adaptiv-font(шрифт-на-десктопе(rem), шрифт-на-мобиле(rem)):
+@mixin adaptiv-font($pcSize, $mobSize) {
+ $addSize: ($pcSize - $mobSize) * 10;
+ $maxWidth: $maxWidth - 320;
+ font-size: calc(#{$mobSize + rem} + #{$addSize} * ((100vw - 320px) / #{$maxWidth }));
+}
+
+/* ============================= */
+
+// для px:
+// $maxWidth: 1280;
+
+// @mixin adaptiv-font($pcSize, $mobSize) {
+//   $addSize: $pcSize - $mobSize;
+//   $maxWidth: $maxWidth - 320;
+//   font-size: calc(#{$mobSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth}));
+// } 
+
+/* ======================================================== */
+
+*,*::before,*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(236, 221, 221);
+  @include adaptiv-font(1.8, 1.4);
+}
+
+h1 {
+  @include adaptiv-font(3.5, 2);
+  margin-bottom: 1em;
+}
+
+.box {
+  max-width: 80%;
+  min-width: 32rem;
+  padding: 0 1.5rem;
+}
+
